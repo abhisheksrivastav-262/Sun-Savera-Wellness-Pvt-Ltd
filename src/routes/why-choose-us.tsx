@@ -73,11 +73,7 @@ function WhyChooseUsPage() {
             <ProductImage
               src={pillar.image}
               alt={pillar.alt}
-              fit={
-                pillar.title === "Natural Product Range" || pillar.title === "Customer First"
-                  ? "contain"
-                  : "cover"
-              }
+              fit="contain"
               className={`aspect-[16/10] ${i % 2 === 1 ? "md:order-2 md:col-span-5" : "md:col-span-5"}`}
             />
             <div

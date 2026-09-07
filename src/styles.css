@@ -156,26 +156,183 @@
     overflow-x: hidden;
   }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer components {
-  .section-shell { margin-inline: auto; width: min(100% - 2.5rem, 76rem); }
-  .eyebrow { color: var(--color-saffron-deep); font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; }
-  .image-slot { background: linear-gradient(135deg, var(--color-ivory-deep), color-mix(in oklab, var(--color-ivory) 72%, var(--color-saffron))); }
-  .image-slot::before { content: ""; width: 4.5rem; height: 4.5rem; border: 1px solid color-mix(in oklab, var(--color-ink) 18%, transparent); border-radius: 999px; }
-  .image-slot-label { position: absolute; inset: 0; display: grid; place-items: center; color: color-mix(in oklab, var(--color-ink) 55%, transparent); font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; }
-  .hairline { border-color: color-mix(in oklab, var(--color-ink) 14%, transparent); }
-  .display-balance { text-wrap: balance; }
-  .reveal-up { animation: reveal-up 700ms cubic-bezier(.2,.7,.2,1) both; }
-  .delay-1 { animation-delay: 100ms; }
-  .delay-2 { animation-delay: 180ms; }
-  .delay-3 { animation-delay: 260ms; }
+  .section-shell {
+    margin-inline: auto;
+    width: min(100% - 2.5rem, 76rem);
+  }
+  .eyebrow {
+    color: var(--color-saffron-deep);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  /* Thin premium accent line above section headings ("uper se line") */
+  .topline {
+    width: 3.25rem;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-saffron-deep), var(--color-saffron));
+  }
+  .topline-light {
+    background: linear-gradient(
+      90deg,
+      var(--color-accent),
+      color-mix(in oklab, var(--color-accent) 30%, transparent)
+    );
+  }
+  .image-slot {
+    background: linear-gradient(
+      135deg,
+      var(--color-ivory-deep),
+      color-mix(in oklab, var(--color-ivory) 72%, var(--color-saffron))
+    );
+  }
+  .image-slot::before {
+    content: "";
+    width: 4.5rem;
+    height: 4.5rem;
+    border: 1px solid color-mix(in oklab, var(--color-ink) 18%, transparent);
+    border-radius: 999px;
+  }
+  .image-slot-label {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: color-mix(in oklab, var(--color-ink) 55%, transparent);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .hairline {
+    border-color: color-mix(in oklab, var(--color-ink) 14%, transparent);
+  }
+  .display-balance {
+    text-wrap: balance;
+  }
+  .reveal-up {
+    animation: reveal-up 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .delay-1 {
+    animation-delay: 100ms;
+  }
+  .delay-2 {
+    animation-delay: 180ms;
+  }
+  .delay-3 {
+    animation-delay: 260ms;
+  }
+  /* Scroll-triggered entrances (paired with <Reveal/> — hidden only after JS mount, SSR/no-JS safe) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+      opacity 750ms ease,
+      transform 750ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-2.5rem) scale(0.98);
+    transition:
+      opacity 850ms ease,
+      transform 850ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(2.5rem) scale(0.98);
+    transition:
+      opacity 850ms ease,
+      transform 850ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-visible {
+    opacity: 1;
+    transform: none;
+  }
+  /* Soft floating decorative blobs */
+  .float-slow {
+    animation: float-slow 9s ease-in-out infinite;
+  }
+  .float-slower {
+    animation: float-slow 13s ease-in-out infinite reverse;
+  }
+  /* Premium infinite feature ticker (seamless loop: track holds 2 identical copies) */
+  .marquee {
+    overflow: hidden;
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+    will-change: transform;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
 }
 
-@keyframes reveal-up { from { opacity: 0; transform: translateY(1rem); } to { opacity: 1; transform: translateY(0); } }
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.9rem);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1;
+    transform: none;
+  }
+  .marquee-track {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .marquee-track {
+    animation-duration: 44s;
+  }
 }

@@ -32,13 +32,13 @@ function ContactPage() {
   return (
     <main>
       <PageHero
-        eyebrow="Contact Us"
+        eyebrow="Request a Quote"
         title={
           <>
-            Let&apos;s Build a <span className="text-saffron-deep">Better Connection.</span>
+            Request a <span className="text-saffron-deep">Quote.</span>
           </>
         }
-        description="Tell us what you are interested in and we will connect with you directly on WhatsApp."
+        description="Share your product requirement and our team will get back to you."
       />
 
       <section className="section-shell grid gap-10 pb-16 md:grid-cols-12 md:pb-24">

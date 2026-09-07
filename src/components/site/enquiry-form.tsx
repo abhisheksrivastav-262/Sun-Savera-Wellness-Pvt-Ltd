@@ -41,9 +41,10 @@ export function EnquiryForm({ defaultProduct = "General Enquiry" }: { defaultPro
     const phone = String(form.get("phone") ?? "").trim();
     const email = String(form.get("email") ?? "").trim();
     const product = String(form.get("product") ?? "General Enquiry");
+    const quantity = String(form.get("quantity") ?? "").trim();
     const message = String(form.get("message") ?? "").trim();
     window.open(
-      buildWhatsAppLink({ name, phone, email, product, message }),
+      buildWhatsAppLink({ name, phone, email, product, quantity, message }),
       "_blank",
       "noopener,noreferrer",
     );
@@ -65,7 +66,7 @@ export function EnquiryForm({ defaultProduct = "General Enquiry" }: { defaultPro
       </div>
       <label className="mt-4 block text-sm">
         <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted-foreground">
-          Product Interested In
+          Product Required
         </span>
         <span className="relative mt-1.5 block">
           <select
@@ -80,6 +81,13 @@ export function EnquiryForm({ defaultProduct = "General Enquiry" }: { defaultPro
           <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
         </span>
       </label>
+      <div className="mt-4">
+        <Field
+          label="Quantity / Requirement"
+          name="quantity"
+          placeholder="e.g. 50 pieces, monthly supply, bulk enquiry"
+        />
+      </div>
       <label className="mt-4 block text-sm">
         <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted-foreground">
           Message

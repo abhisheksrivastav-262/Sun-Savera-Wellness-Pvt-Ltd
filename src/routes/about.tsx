@@ -60,7 +60,7 @@ function AboutPage() {
             <ProductImage
               src="/images/grass-broom-finished-bands.jpeg"
               alt="Finished grass brooms bundled and ready"
-              fit="cover"
+              fit="contain"
               eager
               className="aspect-[3/4]"
             />
@@ -111,6 +111,12 @@ function AboutPage() {
               </li>
             ))}
           </ul>
+          <div className="mt-8 rounded-2xl bg-gradient-to-r from-forest to-[#3d5a3a] p-6 text-primary-foreground shadow-lg">
+            <p className="font-mono text-[0.62rem] uppercase tracking-[0.18em] text-primary-foreground/60">
+              Company Turnover
+            </p>
+            <p className="mt-2 font-display text-3xl text-accent">Up to ₹1 Crore</p>
+          </div>
         </div>
       </section>
 

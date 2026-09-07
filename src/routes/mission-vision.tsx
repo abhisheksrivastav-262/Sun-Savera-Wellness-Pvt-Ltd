@@ -25,7 +25,7 @@ function MissionVisionPage() {
         eyebrow="Mission & Vision"
         title={
           <>
-            What guides <span className="text-saffron-deep">Sun Savera Wellness.</span>
+            Purpose Behind <span className="text-saffron-deep">Our Growth.</span>
           </>
         }
         description="Two simple commitments — practical quality today, and a trusted brand for tomorrow."

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PRODUCTS } from "@/lib/site";
-import { PageHero, ProductCard, ProductImage } from "@/components/site/shared";
+import { GALLERY, PRODUCTS } from "@/lib/site";
+import { GalleryGrid, PageHero, ProductRow } from "@/components/site/shared";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -18,59 +18,36 @@ export const Route = createFileRoute("/products")({
   component: ProductsPage,
 });
 
-const gallery = [
-  {
-    src: "/images/grass-broom-finished-bands.jpeg",
-    alt: "Finished grass brooms with colour bands",
-  },
-  { src: "/images/grass-raw-bundles-standing.jpeg", alt: "Raw grass bundles standing" },
-  { src: "/images/coconut-broom-stacks-outdoor.jpeg", alt: "Coconut broom raw stacks" },
-  { src: "/images/spice-green-cardamom.jpeg", alt: "Green cardamom for garam masala" },
-  { src: "/images/spice-cloves-closeup.jpeg", alt: "Whole cloves close-up" },
-  { src: "/images/makhana-pile-bulk.jpeg", alt: "Makhana dried fruit in bulk" },
-  { src: "/images/cashew-scoop.jpeg", alt: "Cashews in a scoop" },
-  { src: "/images/mixed-dry-fruits-nuts.jpeg", alt: "Mixed dry fruits and nuts" },
-];
-
 function ProductsPage() {
   return (
     <main>
       <PageHero
-        eyebrow="Products"
+        eyebrow="Our Products"
         title={
           <>
-            The Range — <span className="text-saffron-deep">four products, one standard.</span>
+            Products Designed <span className="text-saffron-deep">for Everyday Needs.</span>
           </>
         }
-        description="Household essentials and food products, thoughtfully selected for everyday living."
+        description="Everyday products selected with quality and usability in mind."
       />
 
-      <section className="section-shell grid gap-6 pb-16 md:pb-24">
+      <section className="section-shell grid gap-8 pb-16 md:gap-10 md:pb-24">
         {PRODUCTS.map((product, i) => (
-          <ProductCard
-            key={product.slug}
-            product={product}
-            layout={i % 2 === 0 ? "feature" : "standard"}
-          />
+          <ProductRow key={product.slug} product={product} flip={i % 2 === 1} />
         ))}
       </section>
 
       <section className="border-t hairline bg-secondary/45" aria-label="Product gallery">
         <div className="section-shell py-16 md:py-20">
-          <p className="eyebrow">Closer look</p>
+          <p className="eyebrow">Gallery</p>
           <h2 className="mt-4 max-w-xl font-display text-3xl sm:text-4xl">
             Real range, real material.
           </h2>
-          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {gallery.map((item) => (
-              <ProductImage
-                key={item.src}
-                src={item.src}
-                alt={item.alt}
-                fit="cover"
-                className="aspect-square"
-              />
-            ))}
+          <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
+            Tap any image to view it closer.
+          </p>
+          <div className="mt-8">
+            <GalleryGrid items={GALLERY} />
           </div>
         </div>
       </section>
