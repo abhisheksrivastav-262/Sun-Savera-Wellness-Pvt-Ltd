@@ -11,10 +11,11 @@ import {
   Store,
   Truck,
 } from "lucide-react";
-import { BUSINESS, GALLERY, PRODUCTS } from "@/lib/site";
+import { BUSINESS, GALLERY, HERO_SLIDES, PRODUCTS } from "@/lib/site";
 import {
   FeatureMarquee,
   GalleryGrid,
+  HeroSlideshow,
   ProductImage,
   ProductRow,
   Reveal,
@@ -86,24 +87,17 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   return (
     <main>
-      {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div
-          className="float-slow pointer-events-none absolute -left-24 -top-24 size-80 rounded-full bg-saffron/20 blur-3xl"
-          aria-hidden="true"
-        />
-        <div
-          className="float-slower pointer-events-none absolute -right-20 top-40 size-96 rounded-full bg-forest/15 blur-3xl"
-          aria-hidden="true"
-        />
-        <div className="section-shell relative grid gap-12 pb-14 pt-14 md:grid-cols-12 md:items-center md:pb-20 md:pt-20">
+      {/* HERO — premium background slideshow with readability overlay */}
+      <section className="relative overflow-hidden bg-ink text-white">
+        <HeroSlideshow slides={HERO_SLIDES} />
+        <div className="section-shell relative z-10 grid gap-12 pb-14 pt-14 md:grid-cols-12 md:items-center md:pb-20 md:pt-20">
           <div className="md:col-span-7">
             <span className="topline reveal-up block" aria-hidden="true" />
-            <p className="eyebrow reveal-up mt-4">Quality Products • Trusted Supply</p>
-            <h1 className="reveal-up delay-1 mt-5 max-w-4xl font-display text-5xl leading-[0.98] tracking-tight text-foreground display-balance sm:text-7xl">
-              Quality Products for <span className="text-saffron-deep">Everyday Living</span>
+            <p className="eyebrow reveal-up mt-4 !text-amber-200">Quality Products • Trusted Supply</p>
+            <h1 className="reveal-up delay-1 mt-5 max-w-4xl font-display text-5xl leading-[0.98] tracking-tight text-white display-balance sm:text-7xl [text-shadow:0_2px_24px_rgba(0,0,0,0.55)]">
+              Quality Products for <span className="text-amber-300">Everyday Living</span>
             </h1>
-            <p className="reveal-up delay-2 mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="reveal-up delay-2 mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg [text-shadow:0_1px_12px_rgba(0,0,0,0.6)]">
               Sun Savera Wellness Pvt Ltd brings together carefully selected household and food
               products with a focus on quality, everyday utility and dependable customer service.
             </p>
@@ -117,13 +111,13 @@ function HomePage() {
               </Link>
               <Link
                 to="/products"
-                className="inline-flex items-center gap-2 rounded-full border hairline bg-card px-6 py-3 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-accent hover:text-saffron-deep"
+                className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:-translate-y-0.5 hover:bg-white/20"
               >
                 <span>Explore Products</span>
                 <ArrowDownRight className="size-4" />
               </Link>
             </div>
-            <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground">
+            <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-white/70">
               <span>GST Registered</span>
               <span>Udyam Registered</span>
               <span>WhatsApp Enquiry</span>
@@ -131,15 +125,15 @@ function HomePage() {
           </div>
           <div className="reveal-up delay-2 relative md:col-span-5">
             <div
-              className="absolute -inset-3 -rotate-2 rounded-2xl border hairline bg-gradient-to-br from-saffron/25 via-transparent to-forest/15"
+              className="absolute -inset-3 -rotate-2 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-sm"
               aria-hidden="true"
             />
             <ProductImage
-              src="/images/grass-broom-green-handles-tight.jpeg"
-              alt="Grass Broom with green handles — Sun Savera Wellness hero product"
+              src="/images/sun-masala-powder-bowls.jpeg"
+              alt="Garam Masala powders in bowls — Sun Savera Wellness hero product"
               fit="contain"
               eager
-              wellClass="bg-[#e9f1e2]"
+              wellClass="bg-[#fbf0dc]"
               className="relative aspect-[4/5] w-full shadow-xl"
             />
             <div className="absolute -bottom-4 -left-3 rounded-md bg-primary px-4 py-3 text-primary-foreground shadow-lg">
@@ -188,8 +182,8 @@ function HomePage() {
           />
           <div className="absolute -bottom-5 -left-2 hidden w-44 sm:block md:-left-5">
             <ProductImage
-              src="/images/spice-cloves-closeup.jpeg"
-              alt="Whole cloves — garam masala ingredient"
+              src="/images/sun-whole-spice-sacks.jpeg"
+              alt="Whole spices in jute sacks — garam masala ingredients"
               fit="cover"
               className="aspect-square shadow-lg"
             />

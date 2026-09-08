@@ -40,7 +40,16 @@ export type Product = {
   image: string;
   imageAlt: string;
   fit: "contain" | "cover";
+  images?: { src: string; alt: string }[];
 };
+
+export const HERO_SLIDES: { src: string; alt: string }[] = [
+  { src: "/images/sun-masala-powder-bowls.jpeg", alt: "Colourful garam masala powders in bowls" },
+  { src: "/images/sun-dryfruit-color-grid.jpeg", alt: "Assorted dried fruits and nuts in wooden bowls" },
+  { src: "/images/sun-whole-spice-sacks.jpeg", alt: "Whole spices in jute sacks with cardamom and chillies" },
+  { src: "/images/sun-mixed-nuts-bowls.jpeg", alt: "Mixed nuts in bowls top view" },
+  { src: "/images/sun-masala-wheel.jpeg", alt: "Garam masala spice wheel arrangement" },
+];
 
 export const PRODUCTS: Product[] = [
   {
@@ -59,9 +68,15 @@ export const PRODUCTS: Product[] = [
     category: "Spice",
     name: "Spice Garam Masala",
     description: "A flavourful spice product suited for everyday Indian cooking.",
-    image: "/images/spice-garam-masala-collage-tight.jpeg",
-    imageAlt: "Spice Garam Masala ingredients — Sun Savera Wellness",
+    image: "/images/sun-masala-powder-bowls.jpeg",
+    imageAlt: "Spice Garam Masala powders in bowls — Sun Savera Wellness",
     fit: "contain",
+    images: [
+      { src: "/images/sun-masala-powder-bowls.jpeg", alt: "Garam masala powders in bowls and spoons" },
+      { src: "/images/sun-masala-wheel.jpeg", alt: "Circular garam masala spice arrangement" },
+      { src: "/images/sun-whole-spice-sacks.jpeg", alt: "Whole spices in jute sacks" },
+      { src: "/images/sun-spice-heart-bowls.jpeg", alt: "Assorted spices in heart-shaped bowls" },
+    ],
   },
   {
     slug: "coconut-broom",
@@ -70,8 +85,8 @@ export const PRODUCTS: Product[] = [
     name: "Coconut Broom",
     description:
       "Traditional-inspired household cleaning product designed for practical everyday use.",
-    image: "/images/coconut-broom-raw-bundles.jpeg",
-    imageAlt: "Coconut Broom bundles — Sun Savera Wellness",
+    image: "/images/sun-coconut-broom-pile.jpeg",
+    imageAlt: "Coconut Broom sticks pile — Sun Savera Wellness",
     fit: "contain",
   },
   {
@@ -81,9 +96,14 @@ export const PRODUCTS: Product[] = [
     name: "Dried Fruit",
     description:
       "A carefully presented dried fruit product suitable for everyday consumption and gifting.",
-    image: "/images/makhana-bowl.jpeg",
-    imageAlt: "Dried Fruit presented in a bowl — Sun Savera Wellness",
+    image: "/images/sun-dryfruit-color-grid.jpeg",
+    imageAlt: "Assorted dried fruits in wooden bowls — Sun Savera Wellness",
     fit: "contain",
+    images: [
+      { src: "/images/sun-dryfruit-color-grid.jpeg", alt: "Colourful dried fruits and nuts grid" },
+      { src: "/images/sun-mixed-nuts-bowls.jpeg", alt: "Mixed nuts in bowls" },
+      { src: "/images/sun-dryfruit-steel-plate.jpeg", alt: "Dry fruits on steel plate with bowls" },
+    ],
   },
 ];
 
@@ -109,6 +129,14 @@ export function buildWhatsAppLink(opts: {
 }
 
 export const GALLERY: { src: string; alt: string }[] = [
+  { src: "/images/sun-masala-powder-bowls.jpeg", alt: "Garam masala powders in bowls and spoons" },
+  { src: "/images/sun-dryfruit-color-grid.jpeg", alt: "Assorted dried fruits in wooden bowls" },
+  { src: "/images/sun-coconut-broom-pile.jpeg", alt: "Coconut broom sticks pile" },
+  { src: "/images/sun-whole-spice-sacks.jpeg", alt: "Whole spices in jute sacks" },
+  { src: "/images/sun-mixed-nuts-bowls.jpeg", alt: "Mixed nuts in bowls" },
+  { src: "/images/sun-masala-wheel.jpeg", alt: "Circular garam masala spice arrangement" },
+  { src: "/images/sun-dryfruit-steel-plate.jpeg", alt: "Dry fruits on steel plate" },
+  { src: "/images/sun-spice-heart-bowls.jpeg", alt: "Assorted spices in heart-shaped bowls" },
   { src: "/images/grass-broom-green-handles.jpeg", alt: "Grass broom with green handles" },
   {
     src: "/images/grass-broom-finished-bands.jpeg",

@@ -170,13 +170,171 @@ const PRODUCT_FRAME_BLOB: Record<string, string> = {
  */
 const PRODUCT_FRAME_SHAPE: Record<string, string> = {
   "grass-broom": "mx-auto aspect-[3/4] h-[400px] sm:h-[460px] md:h-[540px] max-w-full",
-  "spice-garam-masala": "w-full aspect-square",
-  "coconut-broom": "w-full aspect-square",
-  "dried-fruit": "w-full aspect-square",
+  "spice-garam-masala": "w-full aspect-[4/3] sm:aspect-square",
+  "coconut-broom": "w-full aspect-[4/3] sm:aspect-square",
+  "dried-fruit": "w-full aspect-[4/3] sm:aspect-square",
 };
 
 function rowCategoryLabel(category: string) {
   return category === "Household" ? "Household Product" : "Food Product";
+}
+
+/**
+ * HERO background slideshow — automatic, looping, fade transition.
+ * Images cover the full hero, text stays readable via dark gradient overlay
+ * rendered by the parent (see usage in index.tsx).
+ */
+export function HeroSlideshow({
+  slides,
+  intervalMs = 4500,
+}: {
+  slides: { src: string; alt: string }[];
+  intervalMs?: number;
+}) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (slides.length < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % slides.length);
+    }, intervalMs);
+    return () => window.clearInterval(id);
+  }, [slides.length, intervalMs]);
+
+  if (slides.length === 0) return null;
+
+  return (
+    <div className="absolute inset-0" aria-hidden="true">
+      {slides.map((slide, i) => (
+        <div
+          key={slide.src}
+          className={`absolute inset-0 transition-opacity duration-[1200ms] ease-out ${
+            i === index ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <img
+            src={slide.src}
+            alt=""
+            loading={i === 0 ? "eager" : "lazy"}
+            decoding="async"
+            className={`h-full w-full object-cover object-center ${
+              i === index ? "hero-slide-zoom" : ""
+            }`}
+          />
+        </div>
+      ))}
+      {/* Readability shield: dark/natural gradient + bottom blend into page bg */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/55" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-transparent to-black/25" />
+    </div>
+  );
+}
+
+/**
+ * Product visual with optional auto-rotating slideshow + filmstrip.
+ * Main image crossfades every 4s; filmstrip auto-scrolls infinitely (CSS marquee),
+ * pauses on hover/touch. Text/CTA outside this component stays stable.
+ */
+function ProductVisual({
+  product,
+  frameBg,
+  frameBlob,
+  frameShape,
+}: {
+  product: Product;
+  frameBg: string;
+  frameBlob: string;
+  frameShape: string;
+}) {
+  const slides = product.images && product.images.length > 0
+    ? product.images
+    : [{ src: product.image, alt: product.imageAlt }];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (slides.length < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % slides.length);
+    }, 4000);
+    return () => window.clearInterval(id);
+  }, [slides.length, product.slug]);
+
+  return (
+    <div
+      className={`relative overflow-hidden rounded-2xl border hairline shadow-[inset_0_2px_18px_rgba(255,255,255,0.55)] ${frameShape} ${frameBg}`}
+    >
+      <div
+        className="absolute inset-0 opacity-60"
+        style={{
+          backgroundImage: "radial-gradient(rgba(60,50,30,0.10) 1px, transparent 1px)",
+          backgroundSize: "18px 18px",
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className={`absolute -right-12 -top-12 size-52 rounded-full blur-3xl ${frameBlob}`}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -bottom-14 -left-14 size-60 rounded-full bg-white/50 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-black/[0.05] via-transparent to-white/30"
+        aria-hidden="true"
+      />
+      {slides.map((slide, i) => (
+        <img
+          key={slide.src}
+          src={slide.src}
+          alt={i === 0 ? product.imageAlt : slide.alt}
+          loading="lazy"
+          decoding="async"
+          className={`absolute inset-0 h-full w-full object-contain p-0 transition-all duration-700 ease-out group-hover:scale-[1.05] ${
+            slides.length > 1
+              ? i === index
+                ? "scale-[1.03] opacity-100"
+                : "scale-[1.0] opacity-0"
+              : "scale-[1.03]"
+          }`}
+        />
+      ))}
+      {slides.length > 1 && (
+        <div className="absolute inset-x-0 bottom-0">
+          <div className="filmstrip" aria-hidden="true">
+            <div className="filmstrip-track">
+              {[...slides, ...slides].map((slide, i) => (
+                <img
+                  key={`${slide.src}-${i}`}
+                  src={slide.src}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="h-12 w-16 shrink-0 rounded-md border border-white/60 object-cover shadow"
+                />
+              ))}
+            </div>
+          </div>
+          <div className="flex justify-center gap-1.5 pb-2 pt-1">
+            {slides.map((slide, i) => (
+              <button
+                key={slide.src}
+                type="button"
+                tabIndex={-1}
+                aria-hidden="true"
+                onClick={() => setIndex(i)}
+                className={`pointer-events-auto h-1.5 rounded-full transition-all duration-300 ${
+                  i === index ? "w-6 bg-white shadow" : "w-1.5 bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 /**
@@ -199,38 +357,13 @@ export function ProductRow({ product, flip = false }: { product: Product; flip?:
           from={flip ? "right" : "left"}
           className={`${flip ? "md:order-2" : "md:order-1"} order-1`}
         >
-          <div className="group flex h-full items-center justify-center p-4 sm:p-6 md:p-8">
-            <div
-              className={`relative overflow-hidden rounded-2xl border hairline shadow-[inset_0_2px_18px_rgba(255,255,255,0.55)] ${frameShape} ${frameBg}`}
-            >
-              <div
-                className="absolute inset-0 opacity-60"
-                style={{
-                  backgroundImage: "radial-gradient(rgba(60,50,30,0.10) 1px, transparent 1px)",
-                  backgroundSize: "18px 18px",
-                }}
-                aria-hidden="true"
-              />
-              <div
-                className={`absolute -right-12 -top-12 size-52 rounded-full blur-3xl ${frameBlob}`}
-                aria-hidden="true"
-              />
-              <div
-                className="absolute -bottom-14 -left-14 size-60 rounded-full bg-white/50 blur-3xl"
-                aria-hidden="true"
-              />
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-black/[0.05] via-transparent to-white/30"
-                aria-hidden="true"
-              />
-              <img
-                src={product.image}
-                alt={product.imageAlt}
-                loading="lazy"
-                decoding="async"
-                className="absolute inset-0 h-full w-full object-contain p-1 transition-transform duration-700 ease-out group-hover:scale-[1.02] sm:p-2"
-              />
-            </div>
+          <div className="group flex h-full flex-col items-center justify-center gap-3 p-3 sm:p-5 md:p-6">
+            <ProductVisual
+              product={product}
+              frameBg={frameBg}
+              frameBlob={frameBlob}
+              frameShape={frameShape}
+            />
           </div>
         </Reveal>
         <div className={`${flip ? "md:order-1" : "md:order-2"} order-2 flex items-center`}>
