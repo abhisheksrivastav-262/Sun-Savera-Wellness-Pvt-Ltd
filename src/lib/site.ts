@@ -45,10 +45,8 @@ export type Product = {
 
 export const HERO_SLIDES: { src: string; alt: string }[] = [
   { src: "/images/sun-masala-powder-bowls.jpeg", alt: "Colourful garam masala powders in bowls" },
-  { src: "/images/sun-dryfruit-color-grid.jpeg", alt: "Assorted dried fruits and nuts in wooden bowls" },
   { src: "/images/sun-whole-spice-sacks.jpeg", alt: "Whole spices in jute sacks with cardamom and chillies" },
   { src: "/images/sun-mixed-nuts-bowls.jpeg", alt: "Mixed nuts in bowls top view" },
-  { src: "/images/sun-masala-wheel.jpeg", alt: "Garam masala spice wheel arrangement" },
 ];
 
 export const PRODUCTS: Product[] = [
@@ -73,9 +71,12 @@ export const PRODUCTS: Product[] = [
     fit: "contain",
     images: [
       { src: "/images/sun-masala-powder-bowls.jpeg", alt: "Garam masala powders in bowls and spoons" },
-      { src: "/images/sun-masala-wheel.jpeg", alt: "Circular garam masala spice arrangement" },
       { src: "/images/sun-whole-spice-sacks.jpeg", alt: "Whole spices in jute sacks" },
-      { src: "/images/sun-spice-heart-bowls.jpeg", alt: "Assorted spices in heart-shaped bowls" },
+      { src: "/images/s-cinnamon-dalchini.jpeg", alt: "Cinnamon sticks close-up" },
+      { src: "/images/s-black-cardamom.jpeg", alt: "Black cardamom close-up" },
+      { src: "/images/s-mace-javitri.jpeg", alt: "Mace spice close-up" },
+      { src: "/images/s-green-cardamom-plant.jpeg", alt: "Green cardamom growing on plant" },
+      { src: "/images/s-nutmeg-jaiphal.jpeg", alt: "Whole nutmeg close-up" },
     ],
   },
   {
@@ -85,8 +86,8 @@ export const PRODUCTS: Product[] = [
     name: "Coconut Broom",
     description:
       "Traditional-inspired household cleaning product designed for practical everyday use.",
-    image: "/images/sun-coconut-broom-pile.jpeg",
-    imageAlt: "Coconut Broom sticks pile — Sun Savera Wellness",
+    image: "/images/coconut-broom-raw-bundles.jpeg",
+    imageAlt: "Coconut Broom bundles — Sun Savera Wellness",
     fit: "contain",
   },
   {
@@ -96,13 +97,13 @@ export const PRODUCTS: Product[] = [
     name: "Dried Fruit",
     description:
       "A carefully presented dried fruit product suitable for everyday consumption and gifting.",
-    image: "/images/sun-dryfruit-color-grid.jpeg",
-    imageAlt: "Assorted dried fruits in wooden bowls — Sun Savera Wellness",
+    image: "/images/sun-mixed-nuts-bowls.jpeg",
+    imageAlt: "Mixed nuts in bowls — Sun Savera Wellness",
     fit: "contain",
     images: [
-      { src: "/images/sun-dryfruit-color-grid.jpeg", alt: "Colourful dried fruits and nuts grid" },
       { src: "/images/sun-mixed-nuts-bowls.jpeg", alt: "Mixed nuts in bowls" },
-      { src: "/images/sun-dryfruit-steel-plate.jpeg", alt: "Dry fruits on steel plate with bowls" },
+      { src: "/images/s-almonds.jpeg", alt: "Premium almonds close-up" },
+      { src: "/images/s-golden-raisins.jpeg", alt: "Golden raisins close-up" },
     ],
   },
 ];
@@ -130,13 +131,15 @@ export function buildWhatsAppLink(opts: {
 
 export const GALLERY: { src: string; alt: string }[] = [
   { src: "/images/sun-masala-powder-bowls.jpeg", alt: "Garam masala powders in bowls and spoons" },
-  { src: "/images/sun-dryfruit-color-grid.jpeg", alt: "Assorted dried fruits in wooden bowls" },
-  { src: "/images/sun-coconut-broom-pile.jpeg", alt: "Coconut broom sticks pile" },
   { src: "/images/sun-whole-spice-sacks.jpeg", alt: "Whole spices in jute sacks" },
   { src: "/images/sun-mixed-nuts-bowls.jpeg", alt: "Mixed nuts in bowls" },
-  { src: "/images/sun-masala-wheel.jpeg", alt: "Circular garam masala spice arrangement" },
-  { src: "/images/sun-dryfruit-steel-plate.jpeg", alt: "Dry fruits on steel plate" },
-  { src: "/images/sun-spice-heart-bowls.jpeg", alt: "Assorted spices in heart-shaped bowls" },
+  { src: "/images/s-cinnamon-dalchini.jpeg", alt: "Cinnamon sticks close-up" },
+  { src: "/images/s-black-cardamom.jpeg", alt: "Black cardamom close-up" },
+  { src: "/images/s-mace-javitri.jpeg", alt: "Mace spice close-up" },
+  { src: "/images/s-green-cardamom-plant.jpeg", alt: "Green cardamom growing on plant" },
+  { src: "/images/s-nutmeg-jaiphal.jpeg", alt: "Whole nutmeg close-up" },
+  { src: "/images/s-almonds.jpeg", alt: "Premium almonds close-up" },
+  { src: "/images/s-golden-raisins.jpeg", alt: "Golden raisins close-up" },
   { src: "/images/grass-broom-green-handles.jpeg", alt: "Grass broom with green handles" },
   {
     src: "/images/grass-broom-finished-bands.jpeg",
@@ -159,5 +162,4 @@ export const GALLERY: { src: string; alt: string }[] = [
   { src: "/images/cashew-closeup.jpeg", alt: "Premium cashews close-up" },
   { src: "/images/cashew-scoop.jpeg", alt: "Cashews in a scoop" },
   { src: "/images/mixed-dry-fruits-nuts.jpeg", alt: "Mixed dry fruits and nuts" },
-  { src: "/images/dried-fruit-bowls-grid.jpeg", alt: "Assorted dried fruits in wooden bowls" },
 ];

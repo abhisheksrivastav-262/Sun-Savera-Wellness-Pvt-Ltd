@@ -82,7 +82,7 @@ function MissionVisionPage() {
           </p>
           <div className="mt-8 overflow-hidden rounded-xl ring-1 ring-primary-foreground/20">
             <img
-              src="/images/dried-fruit-bowls-grid.jpeg"
+              src="/images/sun-mixed-nuts-bowls.jpeg"
               alt="Assorted dried fruits representing growing food categories"
               loading="lazy"
               decoding="async"
