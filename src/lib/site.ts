@@ -59,6 +59,16 @@ export const PRODUCTS: Product[] = [
     image: "/images/grass-broom-green-handles-tight.jpeg",
     imageAlt: "Grass Broom with green handles — Sun Savera Wellness",
     fit: "contain",
+    images: [
+      { src: "/images/grass-broom-green-handles-tight.jpeg", alt: "Grass Broom with green handles" },
+      { src: "/images/c-grass-finished-bands.jpeg", alt: "Finished grass brooms with colour bands" },
+      { src: "/images/c-grass-stick-brooms-blue.jpeg", alt: "Finished stick brooms with blue handles" },
+      { src: "/images/c-grass-finished-green.jpeg", alt: "Finished grass brooms with green handles" },
+      { src: "/images/c-grass-bundles-standing.jpeg", alt: "Tied grass bundles standing" },
+      { src: "/images/c-grass-heads-pile.jpeg", alt: "Grass broom heads pile" },
+      { src: "/images/c-grass-raw-green.jpeg", alt: "Raw green grass bundles" },
+      { src: "/images/c-grass-field-bundles.jpeg", alt: "Raw grass bundles in the field" },
+    ],
   },
   {
     slug: "spice-garam-masala",
@@ -89,6 +99,12 @@ export const PRODUCTS: Product[] = [
     image: "/images/coconut-broom-raw-bundles.jpeg",
     imageAlt: "Coconut Broom bundles — Sun Savera Wellness",
     fit: "contain",
+    images: [
+      { src: "/images/coconut-broom-raw-bundles.jpeg", alt: "Coconut broom raw bundles" },
+      { src: "/images/c-coconut-bundles-stacked.jpeg", alt: "Tied coconut stick bundles stacked" },
+      { src: "/images/c-coconut-sticks-ground.jpeg", alt: "Coconut broom sticks laid out" },
+      { src: "/images/c-coconut-bundles-tarp.jpeg", alt: "Tied coconut bundles pile" },
+    ],
   },
   {
     slug: "dried-fruit",
